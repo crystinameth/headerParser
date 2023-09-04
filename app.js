@@ -14,7 +14,11 @@ app.get('/api/whoami', (req, res) => {
     const ipAddress = req.clientIp;
     const preferredLanguage = req.preferredLanguage;
     const serverSoftware = req.app.get('env');
-    res.json({ ipaddress: ipAddress, language: preferredLanguage, software: serverSoftware });
+    res.json({ 
+        ipaddress: ipAddress, 
+        language: preferredLanguage, 
+        software: serverSoftware 
+    });
 });
 
 const port = 3000;
