@@ -4,9 +4,16 @@ const app = express();
 
 app.use(requestIp.mw());
 
+app.use((req, res, next) => {
+const preferredLanguage = req.headers['accept-language'];
+req.preferredLanguage = preferredLanguage;
+next();
+});
+
 app.get('/api/whoami', (req, res) => {
     const ipAddress = req.clientIp;
-    res.json({ ipaddress: ipAddress});
+    const preferredLanguage = req.preferredLanguage;
+    res.json({ ipaddress: ipAddress, language: preferredLanguage });
 });
 
 const port = 3000;
